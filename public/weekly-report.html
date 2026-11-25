@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutri Planner | Týždenný report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body class="app-bg min-h-screen text-slate-100 has-sticky-footer">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href="/dashboard" class="brand">Nutri Planner</a>
+        <nav class="site-nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/app" class="nav-link">Kalkulačka</a>
+          <a href="/meals" class="nav-link">Jedlá</a>
+          <a href="/weight" class="nav-link">Váha</a>
+          <a href="/weekly-report" class="nav-link">Report</a>
+          <a href="/favorites" class="nav-link">Obľúbené</a>
+          <a href="/achievements" class="nav-link">Odznaky</a>
+          <a href="/recommendations" class="nav-link">Tipy</a>
+          <a href="/contact" class="nav-link">Kontakt</a>
+          <a href="/admin" class="btn-secondary hidden" data-admin-only>Admin panel</a>
+          <button id="logout-btn" class="btn-secondary">Odhlásiť sa</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+      <section class="animate-slide-in">
+        <h2 class="text-xl font-semibold mb-1">Týždenný report</h2>
+        <p class="text-sm text-slate-400">Priemery a plnenie za posledných 7 dní.</p>
+      </section>
+
+      <section class="dash-grid">
+        <article class="dash-card" style="--card-index: 0">
+          <p class="dash-label">Priemerná váha</p>
+          <p id="avg-weight" class="dash-value">—</p>
+        </article>
+        <article class="dash-card" style="--card-index: 1">
+          <p class="dash-label">Priemerné kalórie</p>
+          <p id="avg-calories" class="dash-value">—</p>
+          <p id="avg-calories-hint" class="dash-hint"></p>
+        </article>
+        <article class="dash-card" style="--card-index: 2">
+          <p class="dash-label">Splnené jedlá</p>
+          <p id="done-meals" class="dash-value">—</p>
+        </article>
+        <article class="dash-card" style="--card-index: 3">
+          <p class="dash-label">Splnené dni</p>
+          <p id="done-days" class="dash-value">—</p>
+          <p class="dash-hint">deň = všetky tri jedlá</p>
+        </article>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Priemerné makrá</h3>
+        <div class="dash-grid">
+          <article class="dash-card" style="--card-index: 0">
+            <p class="dash-label">Bielkoviny</p>
+            <p id="avg-protein" class="dash-value">—</p>
+          </article>
+          <article class="dash-card" style="--card-index: 1">
+            <p class="dash-label">Sacharidy</p>
+            <p id="avg-carbs" class="dash-value">—</p>
+          </article>
+          <article class="dash-card" style="--card-index: 2">
+            <p class="dash-label">Tuky</p>
+            <p id="avg-fat" class="dash-value">—</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Váha za posledných 7 dní</h3>
+        <div id="weight-empty" class="empty-note hidden">Za posledný týždeň nemáš zápis váhy.</div>
+        <div id="weight-box" class="chart-box"><canvas id="report-weight-chart"></canvas></div>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Makrá za posledných 7 dní</h3>
+        <div id="macro-empty" class="empty-note hidden">Za posledný týždeň nemáš odfajknuté žiadne jedlo.</div>
+        <div id="macro-box" class="chart-box"><canvas id="report-macro-chart"></canvas></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Všetky práva vyhradené — Palatický Enterprise</p>
+    </footer>
+
+    <script src="/static/js/vendor/chart.umd.min.js" defer></script>
+    <script src="/static/js/common.js" defer></script>
+    <script src="/static/js/weekly-report.js" defer></script>
+  </body>
+</html>

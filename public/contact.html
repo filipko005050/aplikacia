@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutri Planner | Kontakt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body class="app-bg min-h-screen text-slate-100 has-sticky-footer">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href="/dashboard" class="brand">Nutri Planner</a>
+        <nav class="site-nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/app" class="nav-link">Kalkulačka</a>
+          <a href="/meals" class="nav-link">Jedlá</a>
+          <a href="/weight" class="nav-link">Váha</a>
+          <a href="/weekly-report" class="nav-link">Report</a>
+          <a href="/favorites" class="nav-link">Obľúbené</a>
+          <a href="/achievements" class="nav-link">Odznaky</a>
+          <a href="/recommendations" class="nav-link">Tipy</a>
+          <a href="/contact" class="nav-link">Kontakt</a>
+          <a href="/admin" class="btn-secondary hidden" data-admin-only>Admin panel</a>
+          <button id="logout-btn" class="btn-secondary">Odhlásiť sa</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Glyf Instagramu je definovaný raz a použitý dvakrát cez <use>.
+         Musí byť inline - CSP (img-src 'self') by externú ikonu zablokovalo. -->
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute">
+      <symbol id="ig-glyph" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.51.01-4.75.07-1.15.05-1.77.24-2.18.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.41-.35 1.03-.4 2.18-.06 1.24-.07 1.6-.07 4.75s.01 3.51.07 4.75c.05 1.15.24 1.77.4 2.18.22.55.47.94.88 1.35.41.41.8.66 1.35.88.41.16 1.03.35 2.18.4 1.24.06 1.6.07 4.75.07s3.51-.01 4.75-.07c1.15-.05 1.77-.24 2.18-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.41.35-1.03.4-2.18.06-1.24.07-1.6.07-4.75s-.01-3.51-.07-4.75c-.05-1.15-.24-1.77-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.18-.4-1.24-.06-1.6-.07-4.75-.07Zm0 3.37a4.49 4.49 0 1 1 0 8.98 4.49 4.49 0 0 1 0-8.98Zm0 7.4a2.91 2.91 0 1 0 0-5.82 2.91 2.91 0 0 0 0 5.82Zm5.72-7.6a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"
+        />
+      </symbol>
+    </svg>
+
+    <main class="contact-main px-4 py-12">
+      <section class="card-dark animate-slide-in text-center w-full max-w-lg">
+        <span class="instagram-badge" aria-hidden="true">
+          <svg class="instagram-badge-icon" viewBox="0 0 24 24"><use href="#ig-glyph" /></svg>
+        </span>
+
+        <h2 class="text-2xl font-semibold mb-3">Kontakt</h2>
+        <p class="text-slate-300 leading-relaxed max-w-md mx-auto">
+          Ak potrebuješ pomoc, podporu alebo chceš napísať správu, kontaktuj ma na Instagrame.
+        </p>
+
+        <!-- rel="noopener noreferrer" - bez toho by otvorená stránka mala prístup
+             k window.opener a vedela by presmerovať našu kartu. -->
+        <a
+          id="instagram-link"
+          class="instagram-btn"
+          href="https://www.instagram.com/filip_xc/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig-glyph" /></svg>
+          <span>Kontaktovať na Instagrame</span>
+        </a>
+
+        <p class="text-sm text-slate-400 mt-5">@filip_xc</p>
+        <p class="text-xs text-slate-500 mt-1">Odkaz sa otvorí v novej karte.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Všetky práva vyhradené — Palatický Enterprise</p>
+    </footer>
+
+    <script src="/static/js/common.js" defer></script>
+    <script src="/static/js/contact.js" defer></script>
+  </body>
+</html>

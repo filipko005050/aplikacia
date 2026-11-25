@@ -1,0 +1,917 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.auth-bg {
+  background: radial-gradient(circle at top right, #0f766e, #0f172a 55%);
+}
+
+.app-bg {
+  background: linear-gradient(180deg, #020617, #0f172a);
+}
+
+.card-glass {
+  border-radius: 1.25rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+.card-dark {
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px -12px rgba(15, 23, 42, 0.85);
+}
+
+.metric-card {
+  border-radius: 1rem;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.4);
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.form-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(100, 116, 139, 0.7);
+  background: rgba(15, 23, 42, 0.85);
+  color: #e2e8f0;
+  padding: 0.72rem 0.85rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.25);
+}
+
+.btn-primary,
+.btn-secondary {
+  border-radius: 0.75rem;
+  padding: 0.65rem 1.1rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.25s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #14b8a6, #0ea5e9);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(100, 116, 139, 0.6);
+  color: #e2e8f0;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* --- Hlavička s navigáciou --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.4);
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(10px);
+}
+
+.site-header-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f1f5f9;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  border-radius: 0.65rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  border: 1px solid transparent;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #f1f5f9;
+  background: rgba(30, 41, 59, 0.85);
+}
+
+/* Aktívna položka sa označí podľa aktuálnej adresy v common.js. */
+.nav-link.is-current {
+  color: #5eead4;
+  background: rgba(20, 184, 166, 0.16);
+  border-color: rgba(45, 212, 191, 0.45);
+}
+
+@media (max-width: 640px) {
+  .site-header-inner {
+    justify-content: center;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .site-nav {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* --- Dashboard --- */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+
+.dash-card {
+  border-radius: 1rem;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 10px 26px rgba(2, 6, 23, 0.45);
+  animation: fadeIn 0.5s ease both;
+  animation-delay: calc(var(--card-index, 0) * 70ms);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.dash-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+.dash-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.dash-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+  color: #f1f5f9;
+}
+
+.dash-hint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+.dash-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* --- Kontakt: odkaz na Instagram --- */
+/* Obsah je krátky, takže karta sa vycentruje aj zvisle - inak by pod ňou
+   ostával veľký prázdny priestor. */
+.contact-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Kruhový odznak nad nadpisom - dáva sekcii jasný vizuálny ťažiskový bod. */
+.instagram-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #833ab4, #e1306c 55%, #f77737);
+  box-shadow: 0 14px 32px -12px rgba(225, 48, 108, 0.8);
+  animation: fadeIn 0.6s ease both;
+}
+
+.instagram-badge-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.75rem;
+  padding: 0.95rem 2rem;
+  border-radius: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  /* Firemné farby Instagramu - tlačidlo má byť na prvý pohľad rozoznateľné. */
+  background: linear-gradient(90deg, #833ab4, #e1306c 55%, #f77737);
+  box-shadow: 0 12px 28px -10px rgba(225, 48, 108, 0.75);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.instagram-btn:hover,
+.instagram-btn:focus-visible {
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 18px 38px -10px rgba(225, 48, 108, 0.9);
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.instagram-btn:active {
+  transform: scale(0.99);
+}
+
+.instagram-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .instagram-btn {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* --- Výber a odfajkávanie jedál --- */
+.meal-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.6rem;
+}
+
+.meal-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  width: 100%;
+  text-align: left;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  background: rgba(15, 23, 42, 0.65);
+  padding: 0.7rem 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+
+.meal-choice:hover {
+  border-color: rgba(45, 212, 191, 0.65);
+  transform: translateY(-1px);
+}
+
+.meal-choice.is-static {
+  cursor: default;
+  opacity: 0.6;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.meal-choice.is-static:hover {
+  transform: none;
+  border-color: rgba(100, 116, 139, 0.45);
+}
+
+/* Odfajknuté jedlo: zelený highlight a checkmark, ktorý sa vysunie. */
+.meal-choice.is-checked {
+  border-color: rgba(52, 211, 153, 0.75);
+  background: rgba(16, 185, 129, 0.16);
+  animation: checkedPulse 0.45s ease;
+}
+
+.meal-check-mark {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(100, 116, 139, 0.6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: transparent;
+  background: rgba(15, 23, 42, 0.7);
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.meal-choice.is-checked .meal-check-mark {
+  color: #052e2b;
+  background: #34d399;
+  border-color: #34d399;
+  transform: scale(1.08);
+  animation: checkMarkPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.meal-choice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.meal-choice-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.meal-choice-macros {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+@keyframes checkedPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(52, 211, 153, 0);
+  }
+}
+
+@keyframes checkMarkPop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.4;
+  }
+  60% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* Prekročený cieľ sa odlíši farbou, nie iba číslom. */
+.progress-fill.is-over {
+  background: linear-gradient(90deg, #f59e0b, #ef4444) !important;
+}
+
+/* --- Obľúbené jedlá --- */
+/* Hviezdička je vedľa tlačidla výberu, nie v ňom - inak by klik na ňu
+   zároveň jedlo odfajkol. */
+.meal-choice-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+
+.meal-choice-row .meal-choice {
+  flex: 1;
+}
+
+.favorite-star {
+  flex-shrink: 0;
+  width: 2.6rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  background: rgba(15, 23, 42, 0.65);
+  color: #64748b;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+
+.favorite-star:hover,
+.favorite-star:focus-visible {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.6);
+  transform: scale(1.06);
+  outline: none;
+}
+
+.favorite-star.is-favorite {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.7);
+  background: rgba(251, 191, 36, 0.14);
+  animation: checkMarkPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Odznaky --- */
+.badge-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.dash-card.badge-earned {
+  border-color: rgba(251, 191, 36, 0.55);
+  background: rgba(251, 191, 36, 0.1);
+}
+
+/* --- Odporúčania --- */
+.tip-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  background: rgba(30, 41, 59, 0.8);
+  border-left-width: 4px;
+  padding: 1rem 1.15rem;
+  animation: fadeIn 0.45s ease both;
+  animation-delay: calc(var(--row-index, 0) * 60ms);
+}
+
+.tip-title {
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 0.25rem;
+}
+
+.tip-text {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.tip-good {
+  border-left-color: #34d399;
+}
+
+.tip-warn {
+  border-left-color: #fbbf24;
+}
+
+.tip-info {
+  border-left-color: #38bdf8;
+}
+
+/* --- Graf váhy --- */
+.chart-box {
+  position: relative;
+  width: 100%;
+  height: 20rem;
+}
+
+.chart-box-small {
+  position: relative;
+  width: 100%;
+  height: 11rem;
+}
+
+.weight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(100, 116, 139, 0.35);
+  background: rgba(30, 41, 59, 0.7);
+  padding: 0.6rem 0.8rem;
+  animation: fadeIn 0.4s ease both;
+  animation-delay: calc(var(--row-index, 0) * 40ms);
+}
+
+.weight-value {
+  font-weight: 700;
+  color: #5eead4;
+}
+
+.weight-delta {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.empty-note {
+  border-radius: 0.75rem;
+  border: 1px dashed rgba(100, 116, 139, 0.5);
+  padding: 1.1rem;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* --- Alergie / Intolerancie --- */
+.allergy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.5rem;
+}
+
+.allergy-option {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(100, 116, 139, 0.5);
+  background: rgba(15, 23, 42, 0.7);
+  padding: 0.55rem 0.7rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.allergy-option:hover {
+  border-color: rgba(45, 212, 191, 0.6);
+}
+
+.allergy-option input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #14b8a6;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.allergy-option:has(input:checked) {
+  border-color: rgba(45, 212, 191, 0.75);
+  background: rgba(20, 184, 166, 0.16);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.macro-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: #dbeafe;
+}
+
+.progress-wrap {
+  width: 100%;
+  height: 0.8rem;
+  background: rgba(51, 65, 85, 0.9);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #14b8a6, #0ea5e9);
+  transition: width 0.8s ease;
+}
+
+.meal-card {
+  border: 1px solid rgba(100, 116, 139, 0.5);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.75);
+}
+
+.meal-chip {
+  display: inline-block;
+  margin-top: 0.3rem;
+  margin-right: 0.3rem;
+  border-radius: 999px;
+  padding: 0.22rem 0.6rem;
+  font-size: 0.75rem;
+  background: rgba(20, 184, 166, 0.22);
+  border: 1px solid rgba(45, 212, 191, 0.4);
+}
+
+/* --- Sticky footer --- */
+/* Telo je flex stĺpec, takže footer klesne na spodok aj na krátkych stránkach,
+   ale pri dlhom obsahu sa normálne odsunie - žiadne prekrývanie. */
+.has-sticky-footer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.has-sticky-footer > main {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  border-top: 1px solid rgba(100, 116, 139, 0.35);
+  background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    font-size: 0.72rem;
+    padding: 0.85rem 0.75rem;
+  }
+}
+
+/* --- Admin panel: stav používateľa a tabuľka logov --- */
+.btn-danger {
+  border-radius: 0.75rem;
+  padding: 0.65rem 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #e11d48, #f97316);
+  color: #ffffff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-danger:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.status-active {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  color: #6ee7b7;
+}
+
+.status-banned {
+  background: rgba(225, 29, 72, 0.2);
+  border: 1px solid rgba(251, 113, 133, 0.45);
+  color: #fda4af;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 44rem;
+}
+
+.log-table thead {
+  color: #5eead4;
+  text-align: left;
+}
+
+.log-cell {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.3);
+  text-align: left;
+  vertical-align: top;
+}
+
+.log-agent {
+  max-width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meal-detail-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-top: 0.4rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  background: rgba(15, 23, 42, 0.6);
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.meal-detail-btn:hover,
+.meal-detail-btn:focus-visible {
+  transform: translateX(2px);
+  border-color: rgba(45, 212, 191, 0.7);
+  background: rgba(20, 184, 166, 0.14);
+  outline: none;
+}
+
+/* Variant bez uloženého detailu sa nemá tváriť klikateľne. */
+.meal-detail-btn.is-static,
+.meal-detail-btn.is-static:hover {
+  transform: none;
+  border-style: dashed;
+  border-color: rgba(100, 116, 139, 0.35);
+  background: rgba(15, 23, 42, 0.4);
+  cursor: default;
+}
+
+.ingredient-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(100, 116, 139, 0.35);
+  background: rgba(30, 41, 59, 0.75);
+  padding: 0.6rem 0.75rem;
+  animation: ingredientIn 0.4s ease both;
+  animation-delay: calc(var(--row-index, 0) * 45ms);
+}
+
+/* --- Detail jedla --- */
+.modal-root {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Dvojitá trieda prebije Tailwind .hidden, ktoré má nižšiu špecifickosť. */
+.modal-root.hidden {
+  display: none;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(4px);
+  animation: modalFadeIn 0.25s ease both;
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.97);
+  border: 1px solid rgba(100, 116, 139, 0.55);
+  padding: 1.5rem;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+}
+
+.animate-modal-in {
+  animation: modalSlideUp 0.34s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.modal-root.is-closing .modal-overlay {
+  animation: modalFadeOut 0.2s ease both;
+}
+
+.modal-root.is-closing .modal-panel {
+  animation: modalSlideDown 0.2s ease both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.7s ease both;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.7s ease both;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes modalSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+
+@keyframes ingredientIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-in,
+  .animate-modal-in,
+  .ingredient-row,
+  .modal-overlay,
+  .modal-root.is-closing .modal-overlay,
+  .modal-root.is-closing .modal-panel {
+    animation: none;
+  }
+
+  .meal-detail-btn,
+  .progress-fill,
+  .btn-primary,
+  .btn-secondary,
+  .instagram-btn {
+    transition: none;
+  }
+
+  .instagram-btn:hover,
+  .instagram-btn:focus-visible {
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

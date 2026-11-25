@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutri Planner | Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body class="app-bg min-h-screen text-slate-100 has-sticky-footer">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href="/dashboard" class="brand">Admin panel</a>
+        <nav class="site-nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/app" class="nav-link">Kalkulačka</a>
+          <a href="/meals" class="nav-link">Jedlá</a>
+          <a href="/weight" class="nav-link">Váha</a>
+          <a href="/weekly-report" class="nav-link">Report</a>
+          <a href="/favorites" class="nav-link">Obľúbené</a>
+          <a href="/achievements" class="nav-link">Odznaky</a>
+          <a href="/recommendations" class="nav-link">Tipy</a>
+          <a href="/contact" class="nav-link">Kontakt</a>
+          <button id="logout-btn" class="btn-secondary">Odhlásiť sa</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-6">
+      <section class="grid md:grid-cols-3 gap-4">
+        <div class="metric-card">
+          <p class="metric-label">Používatelia</p>
+          <p id="users-count" class="metric-value">0</p>
+        </div>
+        <div class="metric-card">
+          <p class="metric-label">Vyplnené profily</p>
+          <p id="profiles-count" class="metric-value">0</p>
+        </div>
+        <div class="metric-card">
+          <p class="metric-label">Riadky jedálničkov</p>
+          <p id="meal-rows-count" class="metric-value">0</p>
+        </div>
+      </section>
+
+      <section class="card-dark animate-slide-in">
+        <h2 class="text-xl font-semibold mb-4">Prehľad používateľov</h2>
+        <p id="admin-message" class="text-sm mt-2"></p>
+        <div id="users-list" class="space-y-4 mt-4"></div>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <div class="flex items-start justify-between gap-3 flex-wrap mb-4">
+          <div>
+            <h2 class="text-xl font-semibold">Analytika</h2>
+            <p class="text-sm text-slate-400 mt-1">
+              Vymazať sa dá len história aktivity. Počet používateľov, BMI, alergie
+              a obľúbené jedlá sa rátajú naživo z účtov.
+            </p>
+          </div>
+          <button id="analytics-reset-btn" type="button" class="btn-danger">Vymazať históriu aktivity</button>
+        </div>
+        <div class="dash-grid">
+          <article class="dash-card" style="--card-index: 0">
+            <p class="dash-label">Aktívni používatelia</p>
+            <p id="an-active" class="dash-value">—</p>
+          </article>
+          <article class="dash-card" style="--card-index: 1">
+            <p class="dash-label">Zabanovaní</p>
+            <p id="an-banned" class="dash-value">—</p>
+          </article>
+          <article class="dash-card" style="--card-index: 2">
+            <p class="dash-label">Premium</p>
+            <p id="an-premium" class="dash-value">—</p>
+            <p id="an-premium-hint" class="dash-hint"></p>
+          </article>
+          <article class="dash-card" style="--card-index: 3">
+            <p class="dash-label">Vytvorené jedálničky</p>
+            <p id="an-plans" class="dash-value">—</p>
+            <p id="an-plans-hint" class="dash-hint"></p>
+          </article>
+          <article class="dash-card" style="--card-index: 4">
+            <p class="dash-label">Priemerné BMI</p>
+            <p id="an-bmi" class="dash-value">—</p>
+          </article>
+          <article class="dash-card" style="--card-index: 5">
+            <p class="dash-label">Priemerné tempo</p>
+            <p id="an-pace" class="dash-value">—</p>
+            <p class="dash-hint">kg / týždeň</p>
+          </article>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-4 mt-6">
+          <div>
+            <h3 class="text-sm uppercase tracking-wide text-teal-300 mb-2">Aktívni používatelia (30 dní)</h3>
+            <div id="an-users-empty" class="empty-note hidden">Žiadne dáta.</div>
+            <div id="an-users-box" class="chart-box-small"><canvas id="an-users-chart"></canvas></div>
+          </div>
+          <div>
+            <h3 class="text-sm uppercase tracking-wide text-teal-300 mb-2">Najčastejšie alergie</h3>
+            <div id="an-allergy-empty" class="empty-note hidden">Nikto nemá zadané alergie.</div>
+            <div id="an-allergy-box" class="chart-box-small"><canvas id="an-allergy-chart"></canvas></div>
+          </div>
+          <div class="lg:col-span-2">
+            <h3 class="text-sm uppercase tracking-wide text-teal-300 mb-2">Najčastejšie obľúbené jedlá</h3>
+            <div id="an-fav-empty" class="empty-note hidden">Zatiaľ nikto nemá obľúbené jedlo.</div>
+            <div id="an-fav-box" class="chart-box-small"><canvas id="an-fav-chart"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card-dark">
+        <div class="flex items-center justify-between gap-3 flex-wrap mb-4">
+          <h2 class="text-xl font-semibold">Posledné prihlásenia</h2>
+          <div class="flex gap-2 items-center flex-wrap">
+            <label for="logs-user-filter" class="text-sm text-slate-300">Filter:</label>
+            <select id="logs-user-filter" class="form-input w-auto">
+              <option value="">Všetci používatelia</option>
+            </select>
+            <button id="logs-refresh-btn" type="button" class="btn-secondary">Obnoviť</button>
+            <button id="logs-reset-btn" type="button" class="btn-danger">Vymazať históriu</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="log-table">
+            <thead>
+              <tr>
+                <th class="log-cell">Čas</th>
+                <th class="log-cell">Používateľ</th>
+                <th class="log-cell">IP adresa</th>
+                <th class="log-cell">User agent</th>
+                <th class="log-cell">Výsledok</th>
+              </tr>
+            </thead>
+            <tbody id="logs-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Všetky práva vyhradené — Palatický Enterprise</p>
+    </footer>
+
+    <script src="/static/js/vendor/chart.umd.min.js" defer></script>
+    <script src="/static/js/common.js" defer></script>
+    <script src="/static/js/admin.js" defer></script>
+  </body>
+</html>

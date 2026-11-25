@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutri Planner | Jedlá</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body class="app-bg min-h-screen text-slate-100 has-sticky-footer">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href="/dashboard" class="brand">Nutri Planner</a>
+        <nav class="site-nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/app" class="nav-link">Kalkulačka</a>
+          <a href="/meals" class="nav-link">Jedlá</a>
+          <a href="/weight" class="nav-link">Váha</a>
+          <a href="/weekly-report" class="nav-link">Report</a>
+          <a href="/favorites" class="nav-link">Obľúbené</a>
+          <a href="/achievements" class="nav-link">Odznaky</a>
+          <a href="/recommendations" class="nav-link">Tipy</a>
+          <a href="/contact" class="nav-link">Kontakt</a>
+          <a href="/admin" class="btn-secondary hidden" data-admin-only>Admin panel</a>
+          <button id="logout-btn" class="btn-secondary">Odhlásiť sa</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+      <section class="animate-slide-in">
+        <h2 class="text-xl font-semibold">Dnešné jedlá — <span id="today-name"></span></h2>
+        <p class="text-sm text-slate-400 mt-1">
+          Vyber si z každého chodu jedno jedlo a odfajkni ho. Makrá sa hneď pripočítajú.
+        </p>
+        <p id="meals-message" class="text-sm mt-2"></p>
+      </section>
+
+      <section id="no-plan" class="hidden">
+        <div class="empty-note">
+          Na dnešný deň nemáš vygenerovaný jedálniček. Vytvor si ho v
+          <a href="/app" class="text-teal-300 underline">kalkulačke</a>.
+        </div>
+      </section>
+
+      <section id="meals-list" class="space-y-4"></section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Denný prehľad makier</h3>
+        <div id="tracker-rows" class="space-y-4"></div>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Zjedol / zostáva</h3>
+        <div class="chart-box">
+          <canvas id="macro-chart"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Všetky práva vyhradené — Palatický Enterprise</p>
+    </footer>
+
+    <script src="/static/js/vendor/chart.umd.min.js" defer></script>
+    <script src="/static/js/common.js" defer></script>
+    <script src="/static/js/meals.js" defer></script>
+  </body>
+</html>

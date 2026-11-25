@@ -1,0 +1,35 @@
+# Skopíruj do .env a doplň vlastné hodnoty. .env do gitu NIKDY nepatrí.
+PORT=3000
+NODE_ENV=development
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/nutrition_app
+
+# Aspoň 32 znakov. Vygeneruj: node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+JWT_SECRET=replace-with-long-random-secret-min-32-chars
+
+# --- Účty ---
+# Aplikácia nemá verejnú registráciu. Toto sú jediné účty, ktoré existujú.
+# Heslo zmeníš tak, že prepíšeš premennú a spustíš redeploy.
+# Účet, ktorý tu nie je uvedený, sa pri štarte automaticky zabanuje.
+
+# Admin. V produkcii povinný, heslo min. 12 znakov.
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=zmen-toto-heslo-teraz
+
+# Bežní používatelia, heslo min. 8 znakov. Počet nie je obmedzený - stačí
+# pridať ďalšiu dvojicu USER<N>_EMAIL / USER<N>_PASSWORD (USER3, USER4, ...).
+# Čísla nemusia ísť za sebou. Odobratie premenných účet zabanuje, nezmaže.
+USER1_EMAIL=user1@example.com
+USER1_PASSWORD=heslo-pouzivatela-1
+USER2_EMAIL=user2@example.com
+USER2_PASSWORD=heslo-pouzivatela-2
+
+# Časové pásmo používateľa. Server beží v UTC, takže bez tohto by sa deň
+# v týždni aj hranica "dnes" lámali o polnoci nesprávne.
+APP_TIMEZONE=Europe/Bratislava
+
+# --- Voliteľné ---
+BCRYPT_ROUNDS=12
+PG_POOL_MAX=5
+# Cudzie domény, ktoré smú volať API (oddelené čiarkou).
+# Vlastná doména je povolená vždy, sem sa píšu len iné.
+ALLOWED_ORIGINS=

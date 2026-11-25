@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutri Planner | Odznaky</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body class="app-bg min-h-screen text-slate-100 has-sticky-footer">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href="/dashboard" class="brand">Nutri Planner</a>
+        <nav class="site-nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/app" class="nav-link">Kalkulačka</a>
+          <a href="/meals" class="nav-link">Jedlá</a>
+          <a href="/weight" class="nav-link">Váha</a>
+          <a href="/weekly-report" class="nav-link">Report</a>
+          <a href="/favorites" class="nav-link">Obľúbené</a>
+          <a href="/achievements" class="nav-link">Odznaky</a>
+          <a href="/recommendations" class="nav-link">Tipy</a>
+          <a href="/contact" class="nav-link">Kontakt</a>
+          <a href="/admin" class="btn-secondary hidden" data-admin-only>Admin panel</a>
+          <button id="logout-btn" class="btn-secondary">Odhlásiť sa</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 space-y-8">
+      <section class="animate-slide-in">
+        <h2 class="text-xl font-semibold mb-1">Body a odznaky</h2>
+        <p class="text-sm text-slate-400">Za splnené jedlá, celé dni a zápisy váhy.</p>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <div class="flex items-end justify-between gap-4 flex-wrap">
+          <div>
+            <p class="dash-label">Celkové body</p>
+            <p id="total-points" class="dash-value">—</p>
+          </div>
+          <div class="text-right">
+            <p class="dash-label">Level</p>
+            <p id="level-value" class="dash-value">—</p>
+            <p id="level-label" class="dash-hint"></p>
+          </div>
+        </div>
+        <div class="progress-wrap mt-4"><div id="level-bar" class="progress-fill"></div></div>
+        <p id="level-next" class="dash-hint mt-2"></p>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Odznaky</h3>
+        <div id="badge-list" class="dash-grid"></div>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Ako sa body získavajú</h3>
+        <div id="rules-list" class="space-y-2"></div>
+      </section>
+
+      <section class="card-dark animate-fade-in">
+        <h3 class="text-lg font-semibold mb-4">Posledné body</h3>
+        <div id="points-history" class="space-y-2"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Všetky práva vyhradené — Palatický Enterprise</p>
+    </footer>
+
+    <script src="/static/js/common.js" defer></script>
+    <script src="/static/js/achievements.js" defer></script>
+  </body>
+</html>
